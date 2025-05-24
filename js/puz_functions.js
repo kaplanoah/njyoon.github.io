@@ -848,7 +848,7 @@ function puzdata_to_pdf(xw, options) {
 
             var this_clue_string = clue;
             if (i==0) {
-                these_clues.push(xw.clues[j].title + '\n' + this_clue_string);
+                these_clues.push(xw.clues[j].title.toUpperCase() + '\n' + this_clue_string);
             }
             else {
                 these_clues.push(this_clue_string);
@@ -1171,11 +1171,12 @@ function puzdata_to_pdf(xw, options) {
                     }
 
                     heading_pt = 2;
-                    line_ypos += heading_pt;
+                    heading_offset = 2;
+                    line_ypos += heading_pt - heading_offset;
                     doc.setFontSize(clue_pt+heading_pt);
                     doc.setFont(options.clue_font,options.heading_style);
                     doc.text(line_xpos-(num_margin + line_margin)+(col_width/2),line_ypos,line,{align: 'center'});
-                    line_ypos += clue_pt + line_padding + clue_padding;
+                    line_ypos += clue_pt + line_padding + clue_padding + heading_offset;
                     doc.setFontSize(clue_pt);
                     doc.setFont(options.clue_font,options.number_style);
                     doc.text(num_xpos,line_ypos,num, null, null, "right");
