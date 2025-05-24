@@ -1180,14 +1180,16 @@ function puzdata_to_pdf(xw, options) {
                     line_ypos += clue_pt + line_padding + clue_padding + heading_offset;
                     doc.setFontSize(clue_pt * 0.88);
                     doc.setFont(options.clue_font,options.number_style);
-                    doc.text(num_xpos,line_ypos,num, null, null, "right");
+                    var number_offset = clue_pt * 0.06; // Small upward adjustment for smaller numbers
+                    doc.text(num_xpos,line_ypos - number_offset,num, null, null, "right");
                 } else {
 
                     if (j==0) {
                         // when j == 0 we print the number
                         doc.setFontSize(clue_pt * 0.88);
                         doc.setFont(options.clue_font,options.number_style);
-                        doc.text(num_xpos,line_ypos,num, null, null, "right");
+                        var number_offset = clue_pt * 0.06; // Small upward adjustment for smaller numbers
+                        doc.text(num_xpos,line_ypos - number_offset,num, null, null, "right");
                     }
                     // Print the clue
                     doc.setFontSize(clue_pt);
