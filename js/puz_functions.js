@@ -1219,6 +1219,7 @@ function puzdata_to_pdf(xw, options) {
 
     if (options.right_header) {
         doc.setFontSize(options.header2_pt);
+        doc.setFont(options.header_font,'normal');
         doc.text(author_xpos,author_ypos,author,{align: author_align, baseline: baseline});
     }
 
@@ -1226,6 +1227,7 @@ function puzdata_to_pdf(xw, options) {
 
     if (options.subheader && subheader_text) {
         doc.setFontSize(options.subheader_pt);
+        doc.setFont(options.header_font,'normal');
         doc.text(subheader_xpos,subheader_ypos,subheader_text,{align: subheader_align, baseline: baseline});
     }
 
@@ -1254,6 +1256,7 @@ function puzdata_to_pdf(xw, options) {
 
         if (options.right_header) {
             doc.setFontSize(options.header2_pt);
+            doc.setFont(options.header_font,'normal');
             doc.text(author_xpos,author_ypos,author,{align: author_align, baseline: baseline});
         }
 
@@ -1261,6 +1264,7 @@ function puzdata_to_pdf(xw, options) {
 
         if (options.subheader && subheader_text) {
             doc.setFontSize(options.subheader_pt);
+            doc.setFont(options.header_font,'normal');
             doc.text(subheader_xpos,subheader_ypos,subheader_text,{align: subheader_align, baseline: baseline});
         }
 
@@ -1280,9 +1284,9 @@ function puzdata_to_pdf(xw, options) {
             copyright_text = xw.metadata.copyright;
         }
 
-        doc.setFont(options.grid_font,'bold');
+        doc.setFont(options.grid_font,'normal');
         doc.setFontSize(options.copyright_pt);
-        doc.setTextColor(80);
+        // doc.setTextColor(80);
 
         copyright_text = doc.splitTextToSize(copyright_text, grid_width);
 
