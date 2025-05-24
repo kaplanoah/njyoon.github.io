@@ -193,7 +193,7 @@ function draw_crossword_grid(doc, xw, options)
         var MIN_NUMBER_SIZE = 5.5;
 
         var filled_string = (filled ? 'F' : '');
-        var number_offset = cell_size/13;
+        var number_offset = cell_size / TYPOGRAPHY_OFFSETS.grid.number_horizontal_divisor;
         var number_size = cell_size * (options.number_pct / 100) < MIN_NUMBER_SIZE ? MIN_NUMBER_SIZE : cell_size * (options.number_pct / 100);
         //var letter_size = cell_size/1.5;
         var letter_length = letter.length;
@@ -605,7 +605,7 @@ function puzdata_to_pdf(xw, options) {
     ,   line_width : 0.4
     ,   border_width : 0.4
     ,   subheader_mt : 4
-    ,   right_header_offset : 1.2
+    ,   right_header_offset : TYPOGRAPHY_OFFSETS.page_headers.right_header_offset
     ,   shade: true
     ,   letter_pct: 62
     ,   number_pct: 30
@@ -932,7 +932,7 @@ function puzdata_to_pdf(xw, options) {
         var max_clue_num_length = xw.clues.map(x=>x.clue).flat().map(x=>x.number).map(x => x.length).reduce((a, b) => Math.max(a, b));
         var num_margin = doc.getTextWidth('9'.repeat(max_clue_num_length));
         var num_xpos = side_margin + num_margin;
-        var line_margin = 2.9*doc.getTextWidth(' ');
+        var line_margin = TYPOGRAPHY_OFFSETS.clues.number_spacing_multiplier * doc.getTextWidth(' ');
         var line_xpos = num_xpos + line_margin;
         var line_ypos = margin + header_height + clue_pt;
         var my_column = 0;
@@ -1085,7 +1085,7 @@ function puzdata_to_pdf(xw, options) {
     var max_clue_num_length = xw.clues.map(x=>x.clue).flat().map(x=>x.number).map(x => x.length).reduce((a, b) => Math.max(a, b));
     var num_margin = doc.getTextWidth('9'.repeat(max_clue_num_length));
     var num_xpos = side_margin + num_margin;
-    var line_margin = 2.9*doc.getTextWidth(' ');
+    var line_margin = TYPOGRAPHY_OFFSETS.clues.number_spacing_multiplier * doc.getTextWidth(' ');
     var line_xpos = num_xpos + line_margin;
     var line_ypos = margin + header_height + clue_pt;
     var my_column = 0;
@@ -1172,23 +1172,23 @@ function puzdata_to_pdf(xw, options) {
                     }
 
                     heading_pt = 2;
-                    heading_offset = 1.5;
+                    heading_offset = TYPOGRAPHY_OFFSETS.headers.heading_offset;
                     line_ypos += heading_pt - heading_offset;
-                    doc.setFontSize(clue_pt+heading_pt-1);
+                    doc.setFontSize(clue_pt + heading_pt - TYPOGRAPHY_OFFSETS.headers.section_size_reduction);
                     doc.setFont(options.clue_font,options.heading_style);
                     doc.text(line_xpos-(num_margin + line_margin)+(col_width/2),line_ypos,line,{align: 'center'});
                     line_ypos += clue_pt + line_padding + clue_padding + heading_offset;
-                    doc.setFontSize(clue_pt * 0.88);
+                    doc.setFontSize(clue_pt * TYPOGRAPHY_OFFSETS.clues.number_size_multiplier);
                     doc.setFont(options.clue_font,options.number_style);
-                    var number_offset = clue_pt * 0.06; // Small upward adjustment for smaller numbers
+                    var number_offset = clue_pt * TYPOGRAPHY_OFFSETS.clues.number_vertical_offset;
                     doc.text(num_xpos,line_ypos - number_offset,num, null, null, "right");
                 } else {
 
                     if (j==0) {
                         // when j == 0 we print the number
-                        doc.setFontSize(clue_pt * 0.88);
+                        doc.setFontSize(clue_pt * TYPOGRAPHY_OFFSETS.clues.number_size_multiplier);
                         doc.setFont(options.clue_font,options.number_style);
-                        var number_offset = clue_pt * 0.06; // Small upward adjustment for smaller numbers
+                        var number_offset = clue_pt * TYPOGRAPHY_OFFSETS.clues.number_vertical_offset;
                         doc.text(num_xpos,line_ypos - number_offset,num, null, null, "right");
                     }
                     // Print the clue
@@ -1224,7 +1224,7 @@ function puzdata_to_pdf(xw, options) {
 
     if (options.right_header) {
         doc.setFontSize(options.header2_pt);
-        doc.setFont(options.header_font,'normal');
+        doc.setFont(options.header_font, TYPOGRAPHY_OFFSETS.page_headers.right_header_weight);
         doc.text(author_xpos,author_ypos,author,{align: author_align, baseline: baseline});
     }
 
@@ -1232,7 +1232,7 @@ function puzdata_to_pdf(xw, options) {
 
     if (options.subheader && subheader_text) {
         doc.setFontSize(options.subheader_pt);
-        doc.setFont(options.header_font,'normal');
+        doc.setFont(options.header_font, TYPOGRAPHY_OFFSETS.page_headers.subheader_weight);
         doc.text(subheader_xpos,subheader_ypos,subheader_text,{align: subheader_align, baseline: baseline});
     }
 
@@ -1261,7 +1261,7 @@ function puzdata_to_pdf(xw, options) {
 
         if (options.right_header) {
             doc.setFontSize(options.header2_pt);
-            doc.setFont(options.header_font,'normal');
+            doc.setFont(options.header_font, TYPOGRAPHY_OFFSETS.page_headers.right_header_weight);
             doc.text(author_xpos,author_ypos,author,{align: author_align, baseline: baseline});
         }
 
@@ -1269,7 +1269,7 @@ function puzdata_to_pdf(xw, options) {
 
         if (options.subheader && subheader_text) {
             doc.setFontSize(options.subheader_pt);
-            doc.setFont(options.header_font,'normal');
+            doc.setFont(options.header_font, TYPOGRAPHY_OFFSETS.page_headers.subheader_weight);
             doc.text(subheader_xpos,subheader_ypos,subheader_text,{align: subheader_align, baseline: baseline});
         }
 
@@ -1289,9 +1289,13 @@ function puzdata_to_pdf(xw, options) {
             copyright_text = xw.metadata.copyright;
         }
 
-        doc.setFont(options.grid_font,'normal');
+        doc.setFont(options.grid_font, TYPOGRAPHY_OFFSETS.copyright.font_weight);
         doc.setFontSize(options.copyright_pt);
-        // doc.setTextColor(80);
+
+        // Set text color based on configuration
+        if (TYPOGRAPHY_OFFSETS.copyright.use_gray_color) {
+            doc.setTextColor(80);
+        }
 
         copyright_text = doc.splitTextToSize(copyright_text, grid_width);
 
