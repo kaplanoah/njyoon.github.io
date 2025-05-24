@@ -193,8 +193,8 @@ function draw_crossword_grid(doc, xw, options)
         var MIN_NUMBER_SIZE = 5.5;
 
         var filled_string = (filled ? 'F' : '');
-        var number_offset = cell_size/20;
-        var number_size = cell_size/3.5 < MIN_NUMBER_SIZE ? MIN_NUMBER_SIZE : cell_size/3.5;
+        var number_offset = cell_size/13;
+        var number_size = cell_size * (options.number_pct / 100) < MIN_NUMBER_SIZE ? MIN_NUMBER_SIZE : cell_size * (options.number_pct / 100);
         //var letter_size = cell_size/1.5;
         var letter_length = letter.length;
         var letter_size = cell_size/(1.5 + 0.5 * (letter_length - 1));
