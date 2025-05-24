@@ -808,6 +808,8 @@
                 window.localStorage.setItem('useCopyright','true');
             }
 
+            window.localStorage.setItem('copyrightText',$('#copyright').val());
+
             if ($('#grid_br').is(':checked')) {
                 window.localStorage.setItem('grid_br','true');
             }
@@ -998,6 +1000,10 @@
                 $('#useCopyright').prop("checked",false);
             } else {
                 $('#useCopyright').prop("checked",true);
+            }
+
+            if (window.localStorage.getItem('copyrightText')) {
+                $('#copyright').val(window.localStorage.getItem('copyrightText'));
             }
 
             if (window.localStorage.getItem('grid_br') == 'true') {

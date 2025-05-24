@@ -605,6 +605,7 @@ function puzdata_to_pdf(xw, options) {
     ,   line_width : 0.4
     ,   border_width : 0.4
     ,   subheader_mt : 4
+    ,   right_header_offset : 1.2
     ,   shade: true
     ,   letter_pct: 62
     ,   number_pct: 30
@@ -760,7 +761,7 @@ function puzdata_to_pdf(xw, options) {
     //right-header
 
     var author_xpos = DOC_WIDTH - side_margin;
-    var author_ypos = margin;
+    var author_ypos = margin - options.right_header_offset;
     var author = options.header2_text;
     var author_align = options.header2_align;
 
@@ -780,11 +781,11 @@ function puzdata_to_pdf(xw, options) {
         }
 
         if (baseline == 'alphabetic') {
-            author_ypos = title_ypos;
+            author_ypos = title_ypos - options.right_header_offset;
         }
 
         if (baseline == 'middle') {
-            author_ypos = margin + options.header_pt*title.length/2;
+            author_ypos = margin + options.header_pt*title.length/2 - options.right_header_offset;
         }
 
         if (author_align == 'left') {
@@ -1171,9 +1172,9 @@ function puzdata_to_pdf(xw, options) {
                     }
 
                     heading_pt = 2;
-                    heading_offset = 1;
+                    heading_offset = 1.5;
                     line_ypos += heading_pt - heading_offset;
-                    doc.setFontSize(clue_pt+heading_pt);
+                    doc.setFontSize(clue_pt+heading_pt-1);
                     doc.setFont(options.clue_font,options.heading_style);
                     doc.text(line_xpos-(num_margin + line_margin)+(col_width/2),line_ypos,line,{align: 'center'});
                     line_ypos += clue_pt + line_padding + clue_padding + heading_offset;
