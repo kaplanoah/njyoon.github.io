@@ -932,7 +932,7 @@ function puzdata_to_pdf(xw, options) {
         var max_clue_num_length = xw.clues.map(x=>x.clue).flat().map(x=>x.number).map(x => x.length).reduce((a, b) => Math.max(a, b));
         var num_margin = doc.getTextWidth('9'.repeat(max_clue_num_length));
         var num_xpos = side_margin + num_margin;
-        var line_margin = 3.0*doc.getTextWidth(' ');
+        var line_margin = 2.9*doc.getTextWidth(' ');
         var line_xpos = num_xpos + line_margin;
         var line_ypos = margin + header_height + clue_pt;
         var my_column = 0;
@@ -1085,7 +1085,7 @@ function puzdata_to_pdf(xw, options) {
     var max_clue_num_length = xw.clues.map(x=>x.clue).flat().map(x=>x.number).map(x => x.length).reduce((a, b) => Math.max(a, b));
     var num_margin = doc.getTextWidth('9'.repeat(max_clue_num_length));
     var num_xpos = side_margin + num_margin;
-    var line_margin = 3.0*doc.getTextWidth(' ');
+    var line_margin = 2.9*doc.getTextWidth(' ');
     var line_xpos = num_xpos + line_margin;
     var line_ypos = margin + header_height + clue_pt;
     var my_column = 0;
@@ -1178,17 +1178,19 @@ function puzdata_to_pdf(xw, options) {
                     doc.setFont(options.clue_font,options.heading_style);
                     doc.text(line_xpos-(num_margin + line_margin)+(col_width/2),line_ypos,line,{align: 'center'});
                     line_ypos += clue_pt + line_padding + clue_padding + heading_offset;
-                    doc.setFontSize(clue_pt);
+                    doc.setFontSize(clue_pt * 0.88);
                     doc.setFont(options.clue_font,options.number_style);
                     doc.text(num_xpos,line_ypos,num, null, null, "right");
                 } else {
 
                     if (j==0) {
                         // when j == 0 we print the number
+                        doc.setFontSize(clue_pt * 0.88);
                         doc.setFont(options.clue_font,options.number_style);
                         doc.text(num_xpos,line_ypos,num, null, null, "right");
                     }
                     // Print the clue
+                    doc.setFontSize(clue_pt);
                     doc.setFont(options.clue_font,'normal');
                     //doc.text(line_xpos,line_ypos,line);
                     printCharacters(doc, line, line_ypos, line_xpos, clue_pt, options.clue_font);
