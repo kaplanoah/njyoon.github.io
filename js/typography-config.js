@@ -1,24 +1,31 @@
-
 // Custom adjustments
 var TYPOGRAPHY_OFFSETS = {
     grid: {
         // Controls horizontal position of numbers in grid cells
         // Smaller values make numbers appear further to the right
-        number_horizontal_divisor: 13
+        number_horizontal_divisor: 12.9
     },
     clues: {
         // Size of clue numbers relative to clue text
         // 0.88 = 88% of clue text size (makes numbers smaller)
-        number_size_multiplier: 0.88,
+        number_size_multiplier: 0.84,
 
         // Vertical offset to align smaller numbers with text
         // 0.06 = 6% of clue font size upward adjustment
-        number_vertical_offset: 0.06,
+        number_vertical_offset: 0.055,
 
         // Horizontal space between clue numbers and clue text
         // 2.9 = 2.9 times the width of a space character
         // Larger values = more space between numbers and text
-        number_spacing_multiplier: 2.9
+        number_spacing_multiplier: 2.8,
+
+        // Line height within multi-line clues
+        // 0 = no extra spacing, 0.1 = 10% of font size extra spacing
+        line_height_multiplier: 0.12,
+
+        // Spacing between different clues
+        // 0.3 = 30% of font size spacing between clues
+        clue_spacing_multiplier: 0.35
     },
     headers: {
         // Font size reduction for section headers
@@ -32,7 +39,7 @@ var TYPOGRAPHY_OFFSETS = {
 
         // Vertical spacing adjustment for section headers
         // Controls the offset used in header positioning calculations
-        heading_offset: 1.5
+        heading_offset: 2
     },
     page_headers: {
         // Right header vertical offset (for author/constructor info)

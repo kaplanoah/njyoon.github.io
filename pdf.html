@@ -373,8 +373,12 @@
                                                 <input type="number" class="form-control-sm col-4" id="bottommarginSize" value="0.5" step=".1">
                                            </div>
                                             <div class="form-group">
-                                                <label for="sidemarginSize">Side Margins (in.) </label><br>
-                                                <input type="number" class="form-control-sm col-4" id="sidemarginSize" value="0.5" step=".1">
+                                                <label for="leftmarginSize">Left Margin (in.) </label><br>
+                                                <input type="number" class="form-control-sm col-4" id="leftmarginSize" value="0.5" step=".1">
+                                           </div>
+                                           <div class="form-group">
+                                                <label for="rightmarginSize">Right Margin (in.) </label><br>
+                                                <input type="number" class="form-control-sm col-4" id="rightmarginSize" value="0.5" step=".1">
                                            </div>
                                            <div class="form-group" id="useHeaderWidth">
                                                 <label for="headerWidth">Main Header Text Width (%) </label><br>
@@ -834,7 +838,8 @@
 
             window.localStorage.setItem('marginSize',$('#marginSize').val());
             window.localStorage.setItem('bottommarginSize',$('#bottommarginSize').val());
-            window.localStorage.setItem('sidemarginSize',$('#sidemarginSize').val());
+            window.localStorage.setItem('leftmarginSize',$('#leftmarginSize').val());
+            window.localStorage.setItem('rightmarginSize',$('#rightmarginSize').val());
             window.localStorage.setItem('headerWidth',$('#headerWidth').val());
 
 
@@ -1037,8 +1042,18 @@
                 $('#bottommarginSize').val(window.localStorage.getItem('bottommarginSize'));
             }
 
-            if (window.localStorage.getItem('sidemarginSize')) {
-                $('#sidemarginSize').val(window.localStorage.getItem('sidemarginSize'));
+            if (window.localStorage.getItem('leftmarginSize')) {
+                $('#leftmarginSize').val(window.localStorage.getItem('leftmarginSize'));
+            } else if (window.localStorage.getItem('sidemarginSize')) {
+                // Migration: use old sidemarginSize for both left and right if new values don't exist
+                $('#leftmarginSize').val(window.localStorage.getItem('sidemarginSize'));
+            }
+
+            if (window.localStorage.getItem('rightmarginSize')) {
+                $('#rightmarginSize').val(window.localStorage.getItem('rightmarginSize'));
+            } else if (window.localStorage.getItem('sidemarginSize')) {
+                // Migration: use old sidemarginSize for both left and right if new values don't exist
+                $('#rightmarginSize').val(window.localStorage.getItem('sidemarginSize'));
             }
 
             if (window.localStorage.getItem('headerWidth')) {
@@ -1144,7 +1159,8 @@
             var header2_pt = document.getElementById('h2FontSize').value*1;
             var subheader_pt = document.getElementById('sFontSize').value*1;
             var margin = document.getElementById('marginSize').value*72;
-            var side_margin = document.getElementById('sidemarginSize').value*72;
+            var left_margin = document.getElementById('leftmarginSize').value*72;
+            var right_margin = document.getElementById('rightmarginSize').value*72;
             var bottom_margin = document.getElementById('bottommarginSize').value*72;
             var header_width = document.getElementById('headerWidth').value*.01;
             var grid_padding = document.getElementById('gridPadding').value*1;
@@ -1271,7 +1287,7 @@
                             //var puzdata = PUZAPP.parsepuz(contents);
                             var xw_constructor = new JSCrossword();
                             var puzdata = xw_constructor.fromData(contents);
-                            var options = {outfile: outname, header_text: header_text, header2_text: header2_text, header_align: header_align, header2_align: header2_align, y_align: y_align, gray: gray, output: evt, number_pct: number, margin: margin, side_margin: side_margin, bottom_margin: bottom_margin, max_clue_pt: clue_entry_pt, header_pt: header_pt, header2_pt: header2_pt, grid_padding: grid_padding, line_width: line_width, border_width: border_width, column_padding: column_padding, clue_spacing:clue_spacing, heading_style: heading_style, number_style: number_style, shade: shade, my_font: myFont, bold_font: boldFont, header_font: header_font, grid_font: grid_font, clue_font: clue_font, right_header: right_header, subheader: subheader, subheader_text: subheader_text, subheader_pt: subheader_pt, subheader_align: subheader_align, copyright: copyright, copyright_text: copyright_text, subheader_mt: subheader_mt, under_title_spacing: under_title_padding, header_width: header_width, columns:columns, grid_placement: grid_placement, solution: solution, logo: logo, logoX: logoX, logoY: logoY, logoS:logoS, header_indent: header_indent, subheader_indent: subheader_indent};
+                            var options = {outfile: outname, header_text: header_text, header2_text: header2_text, header_align: header_align, header2_align: header2_align, y_align: y_align, gray: gray, output: evt, number_pct: number, margin: margin, left_margin: left_margin, right_margin: right_margin, bottom_margin: bottom_margin, max_clue_pt: clue_entry_pt, header_pt: header_pt, header2_pt: header2_pt, grid_padding: grid_padding, line_width: line_width, border_width: border_width, column_padding: column_padding, clue_spacing:clue_spacing, heading_style: heading_style, number_style: number_style, shade: shade, my_font: myFont, bold_font: boldFont, header_font: header_font, grid_font: grid_font, clue_font: clue_font, right_header: right_header, subheader: subheader, subheader_text: subheader_text, subheader_pt: subheader_pt, subheader_align: subheader_align, copyright: copyright, copyright_text: copyright_text, subheader_mt: subheader_mt, under_title_spacing: under_title_padding, header_width: header_width, columns:columns, grid_placement: grid_placement, solution: solution, logo: logo, logoX: logoX, logoY: logoY, logoS:logoS, header_indent: header_indent, subheader_indent: subheader_indent};
                             puzdata_to_pdf(puzdata,options);
                         };
                     })(f);
