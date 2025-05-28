@@ -44,12 +44,17 @@ var TYPOGRAPHY_OFFSETS = {
     page_headers: {
         // Right header vertical offset (for author/constructor info)
         // 0 = no offset, positive values move header up
-        right_header_offset: 1,
+        right_header_offset: 1.1,
 
         // Font weights for different header elements
         // 'normal' or 'bold'
         subheader_weight: 'normal',
-        right_header_weight: 'normal'
+        right_header_weight: 'normal',
+
+        // Main header horizontal offset (in points)
+        // 0 = no offset, positive values move header to the right
+        // This allows fine-tuning the horizontal position while keeping left alignment
+        main_header_horizontal_offset: 6
     },
     copyright: {
         font_weight: 'normal',

@@ -734,6 +734,11 @@ function puzdata_to_pdf(xw, options) {
         title_xpos = DOC_WIDTH/2;
     }
 
+    // Apply horizontal offset from typography config (after alignment calculation)
+    if (TYPOGRAPHY_OFFSETS && TYPOGRAPHY_OFFSETS.page_headers && TYPOGRAPHY_OFFSETS.page_headers.main_header_horizontal_offset) {
+        title_xpos += TYPOGRAPHY_OFFSETS.page_headers.main_header_horizontal_offset;
+    }
+
     if (baseline == 'alphabetic') {
         title_ypos += options.header_pt;
     } else if (baseline == 'middle') {
