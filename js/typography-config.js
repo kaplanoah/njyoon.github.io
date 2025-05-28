@@ -62,12 +62,12 @@ var TYPOGRAPHY_OFFSETS = {
         main_header_horizontal_offset: 6
     },
     copyright: {
-        font_weight: 'normal',
+        font_weight: 'bold',
         use_gray_color: false, // true = use gray color, false = use black
 
         // Vertical offset for copyright text (in points)
         // Positive values move copyright down, negative values move it up
-        vertical_offset: 0.6
+        vertical_offset: 0.8
     }
 };
 

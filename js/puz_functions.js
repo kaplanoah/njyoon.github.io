@@ -598,6 +598,7 @@ function puzdata_to_pdf(xw, options) {
     ,   header_font : 'RobotoCondensed'
     ,   clue_font : 'RobotoCondensed'
     ,   grid_font : 'NunitoSans-Regular'
+    ,   copyright_font : 'helvetica'
     ,   header_pt : 20
     ,   header2_pt : 16
     ,   subheader_pt : 14
@@ -1302,7 +1303,7 @@ function puzdata_to_pdf(xw, options) {
             copyright_text = xw.metadata.copyright;
         }
 
-        doc.setFont(options.grid_font, TYPOGRAPHY_OFFSETS.copyright.font_weight);
+        doc.setFont(options.copyright_font || options.grid_font, TYPOGRAPHY_OFFSETS.copyright.font_weight);
         doc.setFontSize(options.copyright_pt);
 
         // Set text color based on configuration

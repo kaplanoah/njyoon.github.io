@@ -436,9 +436,9 @@
                                                 <option value="LibreFranklin">Libre Franklin</option>
                                                 <option value="SourceSans3">Source Sans 3</option>
                                                 <option value="Lateef">Lateef</option>
-                                                <option value="NotoSansNagMundari">Noto Sans Nag Mundari</option>
+                                                <option value="NotoSansNagMundari" selected>Noto Sans Nag Mundari</option>
                                                 <option value="helvetica">Helvetica</option>
-                                                <option value="RobotoCondensed" selected>Roboto Condensed</option>
+                                                <option value="RobotoCondensed">Roboto Condensed</option>
                                                 <option value="NunitoSans-Regular">Nunito Sans</option>
                                                 <option value="courier">Courier</option>
                                                 <option value="times">Times New Roman</option>
@@ -452,8 +452,8 @@
                                                 <option value="LibreFranklin">Libre Franklin</option>
                                                 <option value="SourceSans3">Source Sans 3</option>
                                                 <option value="Lateef">Lateef</option>
-                                                <option value="NotoSansNagMundari">Noto Sans Nag Mundari</option>
-                                                <option value="helvetica" selected>Helvetica</option>
+                                                <option value="NotoSansNagMundari" selected>Noto Sans Nag Mundari</option>
+                                                <option value="helvetica">Helvetica</option>
                                                 <option value="RobotoCondensed">Roboto Condensed</option>
                                                 <option value="NunitoSans-Regular">Nunito Sans</option>
                                                 <option value="courier">Courier</option>
@@ -464,10 +464,25 @@
                                                 <label for="clueFont">Clue Font</label>
                                                 <br>
                                                 <select class="form-control" id="clueFont">
-                                                <option value="LibreFranklin" selected>Libre Franklin</option>
+                                                <option value="LibreFranklin">Libre Franklin</option>
                                                 <option value="SourceSans3">Source Sans 3</option>
                                                 <option value="Lateef">Lateef</option>
-                                                <option value="NotoSansNagMundari">Noto Sans Nag Mundari</option>
+                                                <option value="NotoSansNagMundari" selected>Noto Sans Nag Mundari</option>
+                                                <option value="helvetica">Helvetica</option>
+                                                <option value="RobotoCondensed">Roboto Condensed</option>
+                                                <option value="NunitoSans-Regular">Nunito Sans</option>
+                                                <option value="courier">Courier</option>
+                                                <option value="times">Times New Roman</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="copyrightFont">Copyright Font</label>
+                                                <br>
+                                                <select class="form-control" id="copyrightFont">
+                                                <option value="LibreFranklin">Libre Franklin</option>
+                                                <option value="SourceSans3">Source Sans 3</option>
+                                                <option value="Lateef">Lateef</option>
+                                                <option value="NotoSansNagMundari" selected>Noto Sans Nag Mundari</option>
                                                 <option value="helvetica">Helvetica</option>
                                                 <option value="RobotoCondensed">Roboto Condensed</option>
                                                 <option value="NunitoSans-Regular">Nunito Sans</option>
@@ -868,6 +883,7 @@
             window.localStorage.setItem('headerFont',$('#headerFont').val());
             window.localStorage.setItem('gridFont',$('#gridFont').val());
             window.localStorage.setItem('clueFont',$('#clueFont').val());
+            window.localStorage.setItem('copyrightFont',$('#copyrightFont').val());
 
 
             // advanced settings -- grid
@@ -1114,6 +1130,10 @@
                 $('#clueFont').val(window.localStorage.getItem('clueFont'));
             }
 
+            if (window.localStorage.getItem('copyrightFont')) {
+                $('#copyrightFont').val(window.localStorage.getItem('copyrightFont'));
+            }
+
             // advanced settings -- grid
 
             if (window.localStorage.getItem('numberSize')) {
@@ -1182,6 +1202,7 @@
             var header_font = document.getElementById('headerFont').value;
             var grid_font = document.getElementById('gridFont').value;
             var clue_font = document.getElementById('clueFont').value;
+            var copyright_font = document.getElementById('copyrightFont').value;
             var right_header = true;
             var subheader = false;
             var copyright = true;
@@ -1290,7 +1311,7 @@
                             //var puzdata = PUZAPP.parsepuz(contents);
                             var xw_constructor = new JSCrossword();
                             var puzdata = xw_constructor.fromData(contents);
-                            var options = {outfile: outname, header_text: header_text, header2_text: header2_text, header_align: header_align, header2_align: header2_align, y_align: y_align, gray: gray, output: evt, number_pct: number, margin: margin, left_margin: left_margin, right_margin: right_margin, bottom_margin: bottom_margin, max_clue_pt: clue_entry_pt, header_pt: header_pt, header2_pt: header2_pt, grid_padding: grid_padding, line_width: line_width, border_width: border_width, column_padding: column_padding, clue_spacing:clue_spacing, heading_style: heading_style, number_style: number_style, shade: shade, my_font: myFont, bold_font: boldFont, header_font: header_font, grid_font: grid_font, clue_font: clue_font, right_header: right_header, subheader: subheader, subheader_text: subheader_text, subheader_pt: subheader_pt, subheader_align: subheader_align, copyright: copyright, copyright_text: copyright_text, subheader_mt: subheader_mt, under_title_spacing: under_title_padding, header_width: header_width, columns:columns, grid_placement: grid_placement, solution: solution, logo: logo, logoX: logoX, logoY: logoY, logoS:logoS, header_indent: header_indent, subheader_indent: subheader_indent};
+                            var options = {outfile: outname, header_text: header_text, header2_text: header2_text, header_align: header_align, header2_align: header2_align, y_align: y_align, gray: gray, output: evt, number_pct: number, margin: margin, left_margin: left_margin, right_margin: right_margin, bottom_margin: bottom_margin, max_clue_pt: clue_entry_pt, header_pt: header_pt, header2_pt: header2_pt, grid_padding: grid_padding, line_width: line_width, border_width: border_width, column_padding: column_padding, clue_spacing:clue_spacing, heading_style: heading_style, number_style: number_style, shade: shade, my_font: myFont, bold_font: boldFont, header_font: header_font, grid_font: grid_font, clue_font: clue_font, right_header: right_header, subheader: subheader, subheader_text: subheader_text, subheader_pt: subheader_pt, subheader_align: subheader_align, copyright: copyright, copyright_text: copyright_text, subheader_mt: subheader_mt, under_title_spacing: under_title_padding, header_width: header_width, columns:columns, grid_placement: grid_placement, solution: solution, logo: logo, logoX: logoX, logoY: logoY, logoS:logoS, header_indent: header_indent, subheader_indent: subheader_indent, copyright_font: copyright_font};
                             puzdata_to_pdf(puzdata,options);
                         };
                     })(f);
