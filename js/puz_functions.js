@@ -800,6 +800,11 @@ function puzdata_to_pdf(xw, options) {
             author_xpos = title_width + left_margin + title_right_margin;
         }
 
+        // Apply horizontal offset from typography config (after alignment calculation)
+        if (TYPOGRAPHY_OFFSETS && TYPOGRAPHY_OFFSETS.page_headers && TYPOGRAPHY_OFFSETS.page_headers.right_header_horizontal_offset) {
+            author_xpos += TYPOGRAPHY_OFFSETS.page_headers.right_header_horizontal_offset;
+        }
+
     }
 
     //subheader
@@ -1322,6 +1327,12 @@ function puzdata_to_pdf(xw, options) {
             copyright_ypos = (grid_ypos + grid_height + options.border_width + options.copyright_pt + 3);
             // copyright_ypos = DOC_HEIGHT + options.border_width - margin;
         }
+
+        // Apply vertical offset from typography config
+        if (TYPOGRAPHY_OFFSETS && TYPOGRAPHY_OFFSETS.copyright && TYPOGRAPHY_OFFSETS.copyright.vertical_offset) {
+            copyright_ypos += TYPOGRAPHY_OFFSETS.copyright.vertical_offset;
+        }
+
         if (copyright_text.length > 1) {
             doc.text(grid_xpos,copyright_ypos,copyright_text,null,null,'left');
         } else {

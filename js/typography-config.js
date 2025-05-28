@@ -46,6 +46,11 @@ var TYPOGRAPHY_OFFSETS = {
         // 0 = no offset, positive values move header up
         right_header_offset: 1.1,
 
+        // Right header horizontal offset (in points)
+        // 0 = no offset, positive values move header to the right, negative values move it to the left
+        // This allows fine-tuning the horizontal position of the right header
+        right_header_horizontal_offset: 0.5,
+
         // Font weights for different header elements
         // 'normal' or 'bold'
         subheader_weight: 'normal',
@@ -58,7 +63,11 @@ var TYPOGRAPHY_OFFSETS = {
     },
     copyright: {
         font_weight: 'normal',
-        use_gray_color: false // true = use gray color, false = use black
+        use_gray_color: false, // true = use gray color, false = use black
+
+        // Vertical offset for copyright text (in points)
+        // Positive values move copyright down, negative values move it up
+        vertical_offset: 0.6
     }
 };
 
