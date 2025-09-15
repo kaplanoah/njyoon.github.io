@@ -17,15 +17,15 @@ var TYPOGRAPHY_OFFSETS = {
         // Horizontal space between clue numbers and clue text
         // 2.9 = 2.9 times the width of a space character
         // Larger values = more space between numbers and text
-        number_spacing_multiplier: 2.8,
+        number_spacing_multiplier: 2.7,
 
         // Line height within multi-line clues
         // 0 = no extra spacing, 0.1 = 10% of font size extra spacing
-        line_height_multiplier: 0.12,
+        line_height_multiplier: 0.14,
 
         // Spacing between different clues
         // 0.3 = 30% of font size spacing between clues
-        clue_spacing_multiplier: 0.35
+        clue_spacing_multiplier: 0.36
     },
     headers: {
         // Font size reduction for section headers
@@ -44,12 +44,12 @@ var TYPOGRAPHY_OFFSETS = {
     page_headers: {
         // Right header vertical offset (for author/constructor info)
         // 0 = no offset, positive values move header up
-        right_header_offset: 1.1,
+        right_header_offset: 2,
 
         // Right header horizontal offset (in points)
         // 0 = no offset, positive values move header to the right, negative values move it to the left
         // This allows fine-tuning the horizontal position of the right header
-        right_header_horizontal_offset: 0.5,
+        right_header_horizontal_offset: 0.6,
 
         // Font weights for different header elements
         // 'normal' or 'bold'
@@ -59,7 +59,7 @@ var TYPOGRAPHY_OFFSETS = {
         // Main header horizontal offset (in points)
         // 0 = no offset, positive values move header to the right
         // This allows fine-tuning the horizontal position while keeping left alignment
-        main_header_horizontal_offset: 6
+        main_header_horizontal_offset: 6.5
     },
     copyright: {
         font_weight: 'bold',
@@ -67,7 +67,11 @@ var TYPOGRAPHY_OFFSETS = {
 
         // Vertical offset for copyright text (in points)
         // Positive values move copyright down, negative values move it up
-        vertical_offset: 0.8
+        vertical_offset: 1,
+
+        // Horizontal offset for copyright text (in points)
+        // Positive values move copyright to the right, negative values move it to the left
+        horizontal_offset: 0.9
     }
 };
 

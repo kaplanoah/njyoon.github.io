@@ -578,7 +578,7 @@ function puzdata_to_pdf(xw, options) {
     ,   left_margin: 20
     ,   right_margin: 20
     ,   bottom_margin: 140
-    ,   copyright_pt: 7
+    ,   copyright_pt: 6.5
     ,   columns: "auto"
     ,   num_columns : null
     ,   num_full_columns: null
@@ -1332,6 +1332,11 @@ function puzdata_to_pdf(xw, options) {
         // Apply vertical offset from typography config
         if (TYPOGRAPHY_OFFSETS && TYPOGRAPHY_OFFSETS.copyright && TYPOGRAPHY_OFFSETS.copyright.vertical_offset) {
             copyright_ypos += TYPOGRAPHY_OFFSETS.copyright.vertical_offset;
+        }
+
+        // Apply horizontal offset from typography config
+        if (TYPOGRAPHY_OFFSETS && TYPOGRAPHY_OFFSETS.copyright && TYPOGRAPHY_OFFSETS.copyright.horizontal_offset) {
+            copyright_xpos += TYPOGRAPHY_OFFSETS.copyright.horizontal_offset;
         }
 
         if (copyright_text.length > 1) {
