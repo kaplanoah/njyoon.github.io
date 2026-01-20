@@ -32,11 +32,6 @@ var TYPOGRAPHY_OFFSETS = {
         // 1 = 1 point smaller than (clue_pt + heading_pt)
         section_size_reduction: 1,
 
-        // Margin adjustments around section headers
-        // These were added to tighten spacing around ACROSS/DOWN
-        margin_above_reduction: 6,    // Points to reduce above headers
-        margin_below_addition: 6,     // Points to add below headers
-
         // Vertical spacing adjustment for section headers
         // Controls the offset used in header positioning calculations
         heading_offset: 2
@@ -44,7 +39,7 @@ var TYPOGRAPHY_OFFSETS = {
     page_headers: {
         // Right header vertical offset (for author/constructor info)
         // 0 = no offset, positive values move header up
-        right_header_offset: 2,
+        right_header_offset: 2.5,
 
         // Right header horizontal offset (in points)
         // 0 = no offset, positive values move header to the right, negative values move it to the left
